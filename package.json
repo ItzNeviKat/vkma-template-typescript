@@ -1,6 +1,6 @@
 {
   "name": "vkma-template-typescript",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@vkontakte/icons": "^1.18.2",
@@ -20,6 +20,9 @@
     "@types/react-dom": "^16.9.0",
     "react-scripts": "3.4.3",
     "typescript": "~3.7.2"
+  },
+  "bin": {
+    "create-vkma-ts": "./bin/create-vkma-ts.js"
   },
   "scripts": {
     "start": "PORT=10888 HTTPS=true react-scripts start",
