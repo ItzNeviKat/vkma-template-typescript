@@ -1,7 +1,11 @@
 {
-  "name": "vkma-template-typescript",
-  "version": "0.1.1",
-  "private": true,
+  "name": "@itznevikat/vkma-template-typescript",
+  "version": "0.1.2",
+  "homepage": "https://github.com/ItzNeviKat/vkma-template-typescript#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ItzNeviKat/vkma-template-typescript.git"
+  },
   "dependencies": {
     "@vkontakte/icons": "^1.18.2",
     "@vkontakte/vk-bridge": "^2.2.7",
