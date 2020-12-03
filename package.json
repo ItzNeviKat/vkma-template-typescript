@@ -17,7 +17,8 @@
     "eruda-dom": "^2.0.0",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "cross-env": "^7.0.3"
   },
   "devDependencies": {
     "@types/react": "^16.9.0",
@@ -30,7 +31,9 @@
   },
   "scripts": {
     "start": "PORT=10888 HTTPS=true react-scripts start",
-    "build": "GENERATE_SOURCEMAPS=false react-scripts build"
+    "start:win": "cross-env PORT=10888 HTTPS=true react-scripts start",
+    "build": "GENERATE_SOURCEMAPS=false react-scripts build",
+    "build:win": "cross-env GENERATE_SOURCEMAPS=false react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
