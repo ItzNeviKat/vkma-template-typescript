@@ -1,0 +1,21 @@
+{
+  "mount": {
+    "public": { "url": "/", "static": true },
+    "src": { "url": "/" }
+  },
+  "plugins": [
+    [
+      "@snowpack/plugin-typescript",
+      {
+        "args": "-p tsconfig.json"
+      }
+    ],
+    "@snowpack/plugin-babel"
+  ],
+  "packageOptions": {
+    "knownEntrypoints": ["react/jsx-runtime"]
+  },
+  "devOptions": {
+    "port": 10888
+  }
+}

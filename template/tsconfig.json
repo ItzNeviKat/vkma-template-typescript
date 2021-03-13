@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "types": ["react", "react-dom"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "jsx": "preserve",
+    "outDir": "./build",
+    "strict": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "./src"
+  ]
+}

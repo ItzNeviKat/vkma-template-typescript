@@ -7,15 +7,13 @@
 
 const { exec } = require('child_process');
 
-const packageJson = require('../package.json');
-
 const miniAppDirectory = process.argv[2] ? process.argv[2] : 'mini-app';
 const showHelp = ~process.argv.indexOf('--help');
 
 const execute = (command) => new Promise((resolve, reject) => {
-  exec(command, (err) => {
+  exec(command, (err, response) => {
     if (err) return reject(err);
-    resolve();
+    resolve(response);
   });
 });
 
@@ -27,21 +25,26 @@ exec(`mkdir ${miniAppDirectory}`, async (makeDirErr) => {
   if (makeDirErr) return console.error(`😳 Make directory error:\n${makeDirErr}`);
 
   const isWin = process.platform === "win32";
+  const isYarnInstalled = await getYarnInstallation();
 
   if (isWin) {
-    await execute(`xcopy /E /I ${__dirname}\\.. ${process.cwd()}\\${miniAppDirectory}`).catch((err) => console.error(`😳 Copy files error:\n${err}`));
-    await execute(`rmdir /S ${process.cwd()}\\${miniAppDirectory}\\bin`).catch((err) => console.error(`😳 Delete bin folder error:\n${err}`));
+    await execute(`xcopy /E /I ${__dirname}\\..\\template ${process.cwd()}\\${miniAppDirectory}`).catch((err) => console.error(`😳 Copy files error:\n${err}`));
   } else {
-    await execute(`cp -R ${__dirname}/.. ${process.cwd()}/${miniAppDirectory}`).catch((err) => console.error(`😳 Copy files error:\n${err}`));
-    await execute(`rm -rf ${process.cwd()}/${miniAppDirectory}/bin`).catch((err) => console.error(`😳 Delete bin folder error:\n${err}`));
+    await execute(`rsync -a ${__dirname}/../template/* ${process.cwd()}/${miniAppDirectory}`).catch((err) => console.error(`😳 Copy files error:\n${err}`));
   }
 
   console.log(`💾 Successfully copied files to ${process.cwd()}/${miniAppDirectory}`);
   console.log(`📎 Installing dependencies... (it might take a few minutes)`);
 
-  await execute(`cd ${process.cwd()}${isWin ? "\\" : "/"}${miniAppDirectory} && npm install`).catch((err) => console.error(`😳 Installing dependencies error:\n${err}`));
+  await execute(`cd ${process.cwd()}${isWin ? "\\" : "/"}${miniAppDirectory} && ${isYarnInstalled ? 'yarn' : 'npm i'}`).catch((err) => console.error(`😳 Installing dependencies error:\n${err}`));
 
   console.log(`📌 All done, happy coding!`);
 
   process.exit(0);
 });
+
+async function getYarnInstallation() {
+  const response = await execute('yarn -v');
+
+  return /^\d+\.\d+\.\d+\s*$/.test(response);
+}

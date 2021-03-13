@@ -1,0 +1,3 @@
+*:not(input):not(textarea):not(.selectable) {
+  user-select: none;
+}

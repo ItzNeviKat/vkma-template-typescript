@@ -1,53 +1,11 @@
 {
   "name": "@itznevikat/vkma-template-typescript",
-  "version": "0.1.3",
-  "homepage": "/",
+  "version": "0.2.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ItzNeviKat/vkma-template-typescript.git"
   },
-  "dependencies": {
-    "@vkontakte/icons": "^1.18.2",
-    "@vkontakte/vk-bridge": "^2.2.7",
-    "@vkontakte/vkui": "^3.5.0",
-    "babel-eslint": "10.1.0",
-    "core-js": "^3.6.4",
-    "eruda": "^2.2.0",
-    "eruda-code": "^2.0.0",
-    "eruda-dom": "^2.0.0",
-    "prop-types": "^15.7.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "cross-env": "^7.0.3"
-  },
-  "devDependencies": {
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "react-scripts": "3.4.3",
-    "typescript": "~3.7.2"
-  },
   "bin": {
     "create-vkma-ts": "./bin/create-vkma-ts.js"
-  },
-  "scripts": {
-    "start": "PORT=10888 HTTPS=true react-scripts start",
-    "start:win": "cross-env PORT=10888 HTTPS=true react-scripts start",
-    "build": "GENERATE_SOURCEMAPS=false react-scripts build",
-    "build:win": "cross-env GENERATE_SOURCEMAPS=false react-scripts build"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }
