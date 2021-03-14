@@ -6,6 +6,8 @@
  */
 
 const { exec } = require('child_process');
+const { resolve } = require('path');
+const { readFileSync, writeFileSync } =  require('fs');
 
 const miniAppDirectory = process.argv[2] ? process.argv[2] : 'mini-app';
 const showHelp = ~process.argv.indexOf('--help');
@@ -32,6 +34,17 @@ exec(`mkdir ${miniAppDirectory}`, async (makeDirErr) => {
   } else {
     await execute(`rsync -a ${__dirname}/../template/* ${process.cwd()}/${miniAppDirectory}`).catch((err) => console.error(`😳 Copy files error:\n${err}`));
   }
+
+  const packagePath = resolve(process.cwd(), miniAppDirectory, 'package.json');
+  const package = require(packagePath);
+
+  package.name = miniAppDirectory;
+
+  writeFileSync(
+    packagePath,
+    JSON.stringify(package, null, 2),
+    { encoding: 'utf-8' }
+  );
 
   console.log(`💾 Successfully copied files to ${process.cwd()}/${miniAppDirectory}`);
   console.log(`📎 Installing dependencies... (it might take a few minutes)`);
